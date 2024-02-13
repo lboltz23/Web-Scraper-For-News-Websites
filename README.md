@@ -12,4 +12,8 @@
 * Create a conda environment after installing Miniconda 
 * Install the BeautifulSoup package in the terminal
 * Install the Requests package in the terminal
+## How to use:
+* Copy and paste desired news article urls in the urlsfile.txt
+* Then in the terminal write python web_scraper.py
+* You should receive an output of files containing each article being scraped and organized
 
