@@ -9,6 +9,6 @@
 ## Dependencies
 * Install Python programming language
 * Create a conda environment by installing Miniconda 
-* Install the BeautifulSoup package 
-* Install the Requests package
+* Install the BeautifulSoup package in the terminal
+* Install the Requests package in the terminal
 
