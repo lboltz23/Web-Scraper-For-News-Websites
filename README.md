@@ -8,7 +8,8 @@
 * In the next lines of the for loop, using soup.find().text and knowledge of HTML tags, the *program can search through the markup, find the text in that tag, and write it to the output file
 ## Dependencies
 * Install Python programming language
-* Create a conda environment by installing Miniconda 
+* Install Miniconda
+* Create a conda environment after installing Miniconda 
 * Install the BeautifulSoup package in the terminal
 * Install the Requests package in the terminal
 
