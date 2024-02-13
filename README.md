@@ -14,6 +14,7 @@
 * Install the Requests package in the terminal
 ## How to use:
 * Copy and paste desired news article urls in the urlsfile.txt
+* In the terminal activate your conda environment with the packages, BeautifulSoup and Requests, installed
 * Then in the terminal type: python web_scraper.py
 * You should receive an output of files containing each article being scraped and organized
 
