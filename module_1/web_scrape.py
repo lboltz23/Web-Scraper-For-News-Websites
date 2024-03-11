@@ -2,6 +2,7 @@
 #The Web_Scrape abstract base class allows for different implementation of the abstract methods in subclasses without having the user modify the existing code
 #So this code follows the open for extension and closed for modification principle
 #The open/closed principle is helpful because subclasses can be created from the interface without having to modify any of the existing code, so if the website needs to be scraped in a difference way the interface can be used with a different functionality without modification of previous code
+#For example if the user only wanted to scrape the author data and body paragraph data, they can without changing the interface
 from bs4 import BeautifulSoup
 import requests
 from abc import ABC, abstractmethod
