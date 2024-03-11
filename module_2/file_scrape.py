@@ -1,6 +1,7 @@
 #The open/closed principle is used here to define an interface for writing the data to a file, there are two abstract methods defined, each to be used in the class to write to a certain file, either processed or raw
 #This code is open for extension and closed for modification, by allowing the user to add new functionalies by implementing new subclasses without modifying the exisitng abstract methods defined in the FileWrite class
 #inputs the data from the urls and outputs raw and processed files containing the data
+#The benefit of using the open/closed principle is that if the user needed to implement different functionalities to the abstract methods they can just create a new subclasses to the interface without modifying the old code
 from abc import ABC, abstractmethod
 #Create an abstract base class for writing to files
 class FileWrite(ABC):
