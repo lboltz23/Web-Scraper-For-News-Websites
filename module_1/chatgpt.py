@@ -1,4 +1,3 @@
-#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
 import openai
 from abc import ABC, abstractmethod
 #abstract base class
