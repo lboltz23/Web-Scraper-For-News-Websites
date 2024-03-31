@@ -17,4 +17,76 @@
 * In the terminal activate your conda environment with the packages, BeautifulSoup and Requests, installed
 * Then in the terminal type: python web_scraper.py
 * You should receive an output of files containing each article being scraped and organized
+## Connecting to an AI to generate a summary of the news article using OpenAI
+### Setup OpenAI account
+* Create an account through OpenAI or sign in
+* Then after signing in, find the API key page
+* Click "Create new secret key"
+### Connect with python
+* To connect with Python, if not already installed, download python
+* Then set up a virtual environment using miniconda
+* After in the virtual environment install the OpenAI python library:
+  ```
+  pip install --upgrade openai
+  ```
+* Since the code also utilizes a .env file the python-dotenv package also needs to be installed in the environment
+  ```
+  pip install python-dotenv
+  ```
+  
+### Setup API key for project
+* First create a .env file in the root of your project directory
+* Setting your API key to an environment variable here allows for seamless committing and pushing in the future as you cannot push files with the secret key inside unless done this way
+* Then create a .gitignore file and insert the .env file inside:
+```
+.env
+```
+*Inside the .env file set a global variable to the secret key:
+```
+OPENAI_PROJECT_KEY: thekey
+```
+### Use API key in code file
+* Import the openai module and os to use in the file
+```
+from openai import OpenAI
+import os
+```
+* Then import python-dotenv to be able to use the .env file in python
+  ```
+  from dotenv import load_dotenv
+  ```
+* Then the environment variables need to be loaded from .env
+  ```
+  load_dotenv()
+  ```
+* To access the actual key the statement will look like this:
+  ```
+  api_key = os.envrion['KEY_NAME']
+  ```
+### To generate a response
+* First you need to use the openai module to initialize the key
+  ```
+  openai.api_key = api_key
+  ```
+* Then using the ChatCompletions module you can send a prompt to OpenAI using the API key and in return get a response from the AI
+  ```
+  summary = openai.chat.completions.create(
+    module = "gpt-3.5-turbo",
+    messages = ["role": "user", "content": "whatever question or prompt"],)
+  return summary.choices[0].message.content
+  ```
+  
+  
+
+  
+
+
+
+
+
+
+
+
+
+
 
