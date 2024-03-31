@@ -12,6 +12,7 @@ def main():
     urls = []   #creating a new array or list
     urls = open('urls.txt', 'r').read().split('\n') #reading in each url from urls.txt, line by line and storing them into a list
     api_key = "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"
+    
     web_scrape = Website_Scraper()  #creating an instance of the Website_Scraper() class
     file_scrape = Write_File()  #creating an instance of the Write_File() class
     summary = Write_Summary(api_key)
