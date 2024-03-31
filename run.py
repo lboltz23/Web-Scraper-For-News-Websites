@@ -1,6 +1,7 @@
 from module_1.web_scrape import Website_Scraper #importing module one and all the classes inside
 from module_2.file_scrape import Write_File #importing module two and all the classes inside
 from module_1.chatgpt import Write_Summary 
+from dotenv import load_dotenv
 import os
 from openai import OpenAI
 
@@ -11,9 +12,11 @@ client = OpenAI(
 def main():
     urls = []   #creating a new array or list
     urls = open('urls.txt', 'r').read().split('\n') #reading in each url from urls.txt, line by line and storing them into a list
-    api_key = "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"
+    load_dotenv()
+    api_key = os.environ['WEB_API_KEY']
     web_scrape = Website_Scraper()  #creating an instance of the Website_Scraper() class
     file_scrape = Write_File()  #creating an instance of the Write_File() class
+    
     summary = Write_Summary(api_key)
 
     #Iterating over the list of urls in urls
