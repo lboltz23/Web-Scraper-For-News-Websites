@@ -24,7 +24,7 @@ class Write_File(FileWrite):
             f.write(data['timestamp']+ '\n\n')
             f.write(data['body'] + '\n\n')
     
-    def test_raw_file_write():
+    def test_raw_file_write(self):
         """Test raw file writing."""
         try:
             # Check if the data/raw directory exists
