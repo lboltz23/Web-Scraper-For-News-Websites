@@ -8,7 +8,7 @@ from openai import OpenAI
 
 def main():
     urls = []   #creating a new array or list
-    urls = open('urls.txt', 'r').read().split('\n') #reading in each url from urls.txt, line by line and storing them into a list
+    urls = open('urls2.txt', 'r').read().split('\n') #reading in each url from urls.txt, line by line and storing them into a list
     load_dotenv()
 
     api_key = os.environ['WEB_API_KEY']
@@ -21,33 +21,20 @@ def main():
     for index, url in enumerate(urls):
         try:
             data = web_scrape.website_scrape(url)   #scraping the website using the Website_Scraper() instance and storing the data returned
+        except AttributeError as e:
+            print("could not retreive data because of unknown url", e)
         except Exception as err:
             if url == "":
                 print("no url", err)
-            else:
+            elif url !="":
                 print("invalid url", err)
-<<<<<<< HEAD
-        else:
-            if data['body'] == "":
-                print("no body information found")
-            elif data['title'] == "":
-                print("no title found in article")
-=======
-                
+        else:       
             file_scrape.write_rawfile(index, data)  #writing all the data besides the body into the raw file using the Write_File() instance
             file_scrape.write_processedfile(index, data['body']) #writing the body content into the processed file using the Write_File() instance
-            Summary = summary.get_summary(data['body'])
-            summary.write_files(index, data['title'], Summary)
-        
->>>>>>> ebfabd3751dd3ffac486c9091f78d1d6aab1ea62
-
-            data = web_scrape.website_scrape(url)   #scraping the website using the Website_Scraper() instance and storing the data returned
-            file_scrape.write_rawfile(index, data)  #writing all the data besides the body into the raw file using the Write_File() instance
             file_scrape.test_raw_file_write()       # tests raw files
-            file_scrape.write_processedfile(index, data['body']) #writing the body content into the processed file using the Write_File() instance
             file_scrape.test_processed_file_write()
             Summary = summary.get_summary(data['body'])
             summary.write_files(index, data['title'], Summary)
-
+            
 if __name__ == "__main__":
     main()

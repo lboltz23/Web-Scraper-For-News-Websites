@@ -25,10 +25,9 @@ class Website_Scraper(Web_Scrape):
         soup = BeautifulSoup(response.text, 'html.parser')
         #Extracting the title
         try:
-
             titles = soup.find('h1', class_="headline__text inline-placeholder").text
         #Extracting the authors
-        except Exception as err:
+        except AttributeError as err:
             print("could not find title in article", err)
         authors = soup.find('div', class_='byline__names').text
         #Extracting the timestamp
@@ -37,7 +36,7 @@ class Website_Scraper(Web_Scrape):
         try:
             body_information = soup.find_all('p', class_="paragraph inline-placeholder")
         #Joins all of the body paragraphs into a single string separated by two newlines
-        except Exception as err:
+        except AttributeError as err:
             print("could find body information", err)
         body = '\n\n'.join([information.text for information in body_information])
         #returns an associative array with all the data used for writing to a file
