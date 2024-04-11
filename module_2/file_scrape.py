@@ -54,4 +54,32 @@ class Write_File(FileWrite):
 
     def write_processedfile(self, index, body):
         with open(f'data/processed/{index}_processed.txt', 'w') as f: #writing just the body information to the processed file
-            f.write(body + '\n\n')   
+            f.write(body + '\n\n')  
+
+    def test_processed_file_write(self):
+        """Test processed file writing."""
+        try:
+            # Check if the data/processed directory exists
+            if not os.path.exists('data/processed'):
+                print("The data/processed directory does not exist.")
+                return
+
+            # Get a list of files in the data/processed directory
+            files = os.listdir('data/processed')
+
+            # if no files return
+            if not files:
+                print("No files found in the data/processed directory.")
+                return
+
+            # Check if files have content
+            for file in files:
+                with open(os.path.join('data/processed', file), 'r') as f:
+                    content = f.read()
+                    if not content:
+                        print(f"The file {file} in data/processed is empty.")
+                    else:
+                        print(f"The file {file} in data/processed contains data.")
+
+        except IOError as e:
+            print(f"Error testing processed file write: {e}")

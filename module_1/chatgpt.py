@@ -33,7 +33,7 @@ class Write_Summary(Summary):
     #writes the summary and title of the article to the processed file folder in data
     #the index, title, and summary is passed through the method
     def write_files(self, index, title, data):
-        with open(f'data/processed/{index}_summary.txt', 'w') as f: #writing just the body information to the processed file
+        with open(f'data/summary/{index}_summary.txt', 'w') as f: #writing just the body information to the processed file
             #splits the summary into sentences alone to then write to file
             f.write(title +'\n\n')
             for line in data.split('.'):
