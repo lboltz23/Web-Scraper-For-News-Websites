@@ -8,8 +8,9 @@ from openai import OpenAI
 
 def main():
     urls = []   #creating a new array or list
-    urls = open('urls.txt', 'r').read().split('\n') #reading in each url from urls.txt, line by line and storing them into a list
+    urls = open('urls2.txt', 'r').read().split('\n') #reading in each url from urls.txt, line by line and storing them into a list
     load_dotenv()
+
     api_key = os.environ['WEB_API_KEY']
     web_scrape = Website_Scraper()  #creating an instance of the Website_Scraper() class
     file_scrape = Write_File()  #creating an instance of the Write_File() class
@@ -18,6 +19,19 @@ def main():
 
     #Iterating over the list of urls in urls
     for index, url in enumerate(urls):
+        try:
+            data = web_scrape.website_scrape(url)   #scraping the website using the Website_Scraper() instance and storing the data returned
+        except Exception as err:
+            if url == "":
+                print("no url", err)
+            else:
+                print("invalid url", err)
+        else:
+            file_scrape.write_rawfile(index, data)  #writing all the data besides the body into the raw file using the Write_File() instance
+            file_scrape.write_processedfile(index, data['body']) #writing the body content into the processed file using the Write_File() instance
+            Summary = summary.get_summary(data['body'])
+            summary.write_files(index, data['title'], Summary)
+        
 
         data = web_scrape.website_scrape(url)   #scraping the website using the Website_Scraper() instance and storing the data returned
         file_scrape.write_rawfile(index, data)  #writing all the data besides the body into the raw file using the Write_File() instance
