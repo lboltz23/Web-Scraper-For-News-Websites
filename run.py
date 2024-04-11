@@ -5,9 +5,6 @@ from dotenv import load_dotenv
 import os
 from openai import OpenAI
 
-client = OpenAI(
-    api_key=os.environ.get("OPENAI_API_KEY"),
-)
 
 def main():
     urls = []   #creating a new array or list
@@ -35,5 +32,13 @@ def main():
             Summary = summary.get_summary(data['body'])
             summary.write_files(index, data['title'], Summary)
         
+
+        data = web_scrape.website_scrape(url)   #scraping the website using the Website_Scraper() instance and storing the data returned
+        file_scrape.write_rawfile(index, data)  #writing all the data besides the body into the raw file using the Write_File() instance
+        file_scrape.test_raw_file_write() 
+        file_scrape.write_processedfile(index, data['body']) #writing the body content into the processed file using the Write_File() instance
+        Summary = summary.get_summary(data['body'])
+        summary.write_files(index, data['title'], Summary)
+
 if __name__ == "__main__":
     main()

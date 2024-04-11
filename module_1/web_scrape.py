@@ -5,6 +5,7 @@
 #For example if the user only wanted to scrape the author data and body paragraph data, they can without changing the interface
 from bs4 import BeautifulSoup
 import requests
+import json
 from abc import ABC, abstractmethod
 
 #defining the abstract base class Web_Scrape for web scraping 
