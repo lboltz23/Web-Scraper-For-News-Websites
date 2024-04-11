@@ -4,6 +4,7 @@
 #The benefit of using the open/closed principle is that if the user needed to implement different functionalities to the abstract methods they can just create a new subclasses to the interface without modifying the old code
 #For example if they wanted to just have the author and body paragraphs in the processed file they can do that without changing the interface
 from abc import ABC, abstractmethod
+import os
 #Create an abstract base class for writing to files
 class FileWrite(ABC):
     #defining the abstract method for writing raw data to a file
@@ -23,6 +24,33 @@ class Write_File(FileWrite):
             f.write(data['timestamp']+ '\n\n')
             f.write(data['body'] + '\n\n')
     
+    def test_raw_file_write():
+        """Test raw file writing."""
+        try:
+            # Check if the data/raw directory exists
+            if not os.path.exists('data/raw'):
+                print("The data/raw directory does not exist.")
+                return
+
+            # Get a list of files in the data/raw directory
+            files = os.listdir('data/raw')
+
+            if not files:
+                print("No files found in the data/raw directory.")
+                return
+
+            # Check if files have content
+            for file in files:
+                with open(os.path.join('data/raw', file), 'r') as f:
+                    content = f.read()
+                    if not content:
+                        print(f"The file {file} in data/raw is empty.")
+                    else:
+                        print(f"The file {file} in data/raw contains data.")
+
+        except IOError as e:
+            print(f"Error testing raw file write: {e}")
+
     def write_processedfile(self, index, body):
         with open(f'data/processed/{index}_processed.txt', 'w') as f: #writing just the body information to the processed file
             f.write(body + '\n\n')   
