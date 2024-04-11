@@ -35,6 +35,7 @@ class Write_File(FileWrite):
             # Get a list of files in the data/raw directory
             files = os.listdir('data/raw')
 
+            # if no files return
             if not files:
                 print("No files found in the data/raw directory.")
                 return
