@@ -31,17 +31,12 @@ def main():
                 print("no body information found")
             elif data['title'] == "":
                 print("no title found in article")
-            
-            file_scrape.write_rawfile(index, data)  #writing all the data besides the body into the raw file using the Write_File() instance
-            file_scrape.write_processedfile(index, data['body']) #writing the body content into the processed file using the Write_File() instance
-            Summary = summary.get_summary(data['body'])
-            summary.write_files(index, data['title'], Summary)
-        
 
             data = web_scrape.website_scrape(url)   #scraping the website using the Website_Scraper() instance and storing the data returned
             file_scrape.write_rawfile(index, data)  #writing all the data besides the body into the raw file using the Write_File() instance
-            file_scrape.test_raw_file_write() 
+            file_scrape.test_raw_file_write()       # tests raw files
             file_scrape.write_processedfile(index, data['body']) #writing the body content into the processed file using the Write_File() instance
+            file_scrape.test_processed_file_write()
             Summary = summary.get_summary(data['body'])
             summary.write_files(index, data['title'], Summary)
 
