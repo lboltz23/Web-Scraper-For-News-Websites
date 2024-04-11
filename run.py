@@ -8,7 +8,7 @@ from openai import OpenAI
 
 def main():
     urls = []   #creating a new array or list
-    urls = open('urls2.txt', 'r').read().split('\n') #reading in each url from urls.txt, line by line and storing them into a list
+    urls = open('urls.txt', 'r').read().split('\n') #reading in each url from urls.txt, line by line and storing them into a list
     load_dotenv()
 
     api_key = os.environ['WEB_API_KEY']
