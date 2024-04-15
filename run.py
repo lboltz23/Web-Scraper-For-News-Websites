@@ -1,6 +1,6 @@
 from module_1.web_scrape import Website_Scraper #importing module one and all the classes inside
 from module_2.file_scrape import Write_File #importing module two and all the classes inside
-from module_1.chatgpt import Write_Summary 
+from module3.chatgpt import Write_Summary 
 from dotenv import load_dotenv
 import os
 from openai import OpenAI
