@@ -8,7 +8,7 @@ from openai import OpenAI
 
 def main():
     urls = []   #creating a new array or list
-    urls = open('urls2.txt', 'r').read().split('\n') #reading in each url from urls.txt, line by line and storing them into a list
+    urls = open('urls.txt', 'r').read().split('\n') #reading in each url from urls.txt, line by line and storing them into a list
     load_dotenv()
 
     api_key = os.environ['WEB_API_KEY']
@@ -32,9 +32,10 @@ def main():
             file_scrape.write_rawfile(index, data)  #writing all the data besides the body into the raw file using the Write_File() instance
             file_scrape.write_processedfile(index, data['body']) #writing the body content into the processed file using the Write_File() instance
             file_scrape.test_raw_file_write()       # tests raw files
-            file_scrape.test_processed_file_write()
+            file_scrape.test_processed_file_write() #Tests processed files
             Summary = summary.get_summary(data['body'])
             summary.write_files(index, data['title'], Summary)
+            summary.test_summary_files() # tests summary files
             
 if __name__ == "__main__":
     main()
