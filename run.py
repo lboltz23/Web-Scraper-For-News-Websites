@@ -26,20 +26,11 @@ def main():
                 print("no url", err)
             else:
                 print("invalid url", err)
-<<<<<<< HEAD
         else:
             if data['body'] == "":
                 print("no body information found")
             elif data['title'] == "":
                 print("no title found in article")
-=======
-                
-            file_scrape.write_rawfile(index, data)  #writing all the data besides the body into the raw file using the Write_File() instance
-            file_scrape.write_processedfile(index, data['body']) #writing the body content into the processed file using the Write_File() instance
-            Summary = summary.get_summary(data['body'])
-            summary.write_files(index, data['title'], Summary)
-        
->>>>>>> ebfabd3751dd3ffac486c9091f78d1d6aab1ea62
 
             data = web_scrape.website_scrape(url)   #scraping the website using the Website_Scraper() instance and storing the data returned
             file_scrape.write_rawfile(index, data)  #writing all the data besides the body into the raw file using the Write_File() instance
