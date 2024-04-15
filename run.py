@@ -33,9 +33,13 @@ def main():
             file_scrape.write_processedfile(index, data['body']) #writing the body content into the processed file using the Write_File() instance
             file_scrape.test_raw_file_write()       # tests raw files
             file_scrape.test_processed_file_write() #Tests processed files
-            Summary = summary.get_summary(data['body'])
-            summary.write_files(index, data['title'], Summary)
-            summary.test_summary_files() # tests summary files
+            try: #try to get summary
+                Summary = summary.get_summary(data['body'])
+            except Exception as e: #if not able to get summary throw error
+                print("Error getting summary:", e)
+            else: # if able to get summary write it to file, then test if it is in file
+                summary.write_files(index, data['title'], Summary)
+                summary.test_summary_files() # tests summary files
             
 if __name__ == "__main__":
     main()
