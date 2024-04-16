@@ -78,9 +78,9 @@ import os
   ## Test issues
   ### Checking the URLs provided in the urlsfile.txt
   ### There are three possibilities:
-  * No URL given : there are no URLs in the text file
+  * No URL given: there are no URLs in the text file
   * Invalid URL: the URL cannot be located
-  * Incompatible URL: the URL is not able to be scraped because scraper cannot find proper tags in HTML code
+  * Incompatible URL: the URL is not able to be scraped because the scraper cannot find proper tags in the HTML code
   #### Using a Try-Except statement to test for either an attribute error or an exception error
   ```
   try:
