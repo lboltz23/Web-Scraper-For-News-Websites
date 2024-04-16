@@ -104,9 +104,19 @@ import os
   except AttributeError as err: #prints out attribute error if the html tag could not be found
       print("could not find title in article", err)
   ```
-  ##### The statement checks if the title HTML tag can be found in the article's HTML and prints out an error statement if it cannot be found
+  ##### The statement checks if the header HTML tag can be found in the article's HTML and prints out an error statement if it cannot be found
 
-  
+  ### Checking if the body paragraphs can be scraped from the article in web_scrape.py
+  #### Using a Try-Except statement that is implemented in the method website_scrape()
+  ```
+  try:
+      body_information = soup.find_all('p', class_="paragraph inline-placeholder")
+        
+  except AttributeError as err: #prints out attribute error if html paragraph tag can not be found in article
+      print("could find body information", err)
+  ```
+  ##### The statement checks if the paragraph HTML tag can be found in the article's HTML and prints out an error statement if it cannot be found
+
 
 
 
