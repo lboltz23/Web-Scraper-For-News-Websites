@@ -26,18 +26,20 @@ class Website_Scraper(Web_Scrape):
         #Extracting the title
         try:
             titles = soup.find('h1', class_="headline__text inline-placeholder").text
-        #Extracting the authors
+        
         except AttributeError as err: #prints out attribute error if the html tag could not be found
             print("could not find title in article", err)
+        #Extracting the authors
         authors = soup.find('div', class_='byline__names').text
         #Extracting the timestamp
         timestamp = soup.find('div', class_="timestamp").text
         #Extracting all of the body paragraphs
         try:
             body_information = soup.find_all('p', class_="paragraph inline-placeholder")
-        #Joins all of the body paragraphs into a single string separated by two newlines
+        
         except AttributeError as err: #prints out attribute error if html paragraph tag can not be found in article
             print("could find body information", err)
+        #Joins all of the body paragraphs into a single string separated by two newlines
         body = '\n\n'.join([information.text for information in body_information])
         #returns an associative array with all the data used for writing to a file
         return {
