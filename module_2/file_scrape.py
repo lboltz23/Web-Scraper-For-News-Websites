@@ -48,7 +48,7 @@ class Write_File(FileWrite):
                         print(f"The file {file} in data/raw is empty.")
                     else:
                         print(f"The file {file} in data/raw contains data.")
-
+        #  throw error if needed
         except IOError as e:
             print(f"Error testing raw file write: {e}")
 
@@ -80,6 +80,6 @@ class Write_File(FileWrite):
                         print(f"The file {file} in data/processed is empty.")
                     else:
                         print(f"The file {file} in data/processed contains data.")
-
+        #  throw error if needed
         except IOError as e:
             print(f"Error testing processed file write: {e}")
