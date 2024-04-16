@@ -19,15 +19,16 @@ def main():
 
     #Iterating over the list of urls in urls
     for index, url in enumerate(urls):
+        #Creates a try, except to check if there are no urls, an invalid url, or if the url is unknown, so it cannot be scraped 
         try:
             data = web_scrape.website_scrape(url)   #scraping the website using the Website_Scraper() instance and storing the data returned
         except AttributeError as e:
-            print("could not retreive data because of unknown url", e)
+            print("could not retrieve data because of unknown url", e) #prints could not retrieve data because of unknown url and the error
         except Exception as err:
             if url == "":
-                print("no url", err)
+                print("no url", err) #prints no url and the error given
             elif url !="":
-                print("invalid url", err)
+                print("invalid url", err) #prints invalid url and the error given
         else:       
             file_scrape.write_rawfile(index, data)  #writing all the data besides the body into the raw file using the Write_File() instance
             file_scrape.write_processedfile(index, data['body']) #writing the body content into the processed file using the Write_File() instance
