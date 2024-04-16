@@ -95,6 +95,16 @@ import os
   ```
   ##### The statement will print out an error statement with the corresponding error output
   
+  ### Checking if the title can be scraped from the article in web_scrape.py
+  #### Using a Try-Except statement that is implemented in the method website_scrape()
+  ```
+  try:
+      titles = soup.find('h1', class_="headline__text inline-placeholder").text
+        
+  except AttributeError as err: #prints out attribute error if the html tag could not be found
+      print("could not find title in article", err)
+  ```
+  ##### The statement checks if the title HTML tag can be found in the article's HTML and prints out an error statement if it cannot be found
 
   
 
