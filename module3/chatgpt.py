@@ -1,4 +1,5 @@
 import openai
+import os
 from abc import ABC, abstractmethod
 #abstract base class
 #imports openai module
@@ -40,3 +41,30 @@ class Write_Summary(Summary):
                 #if the line is not empty, write to the file
                 if line.strip():
                     f.write(line.strip() + '.' + '\n\n')   
+
+    def test_summary_files(self):
+        """Test summary files."""
+        try:
+            # Check if the data/summary directory exists
+            if not os.path.exists('data/summary'):
+                print("The data/summary directory does not exist.")
+                return
+
+            # Get a list of files in the data/summary directory
+            files = os.listdir('data/summary')
+
+            if not files:
+                print("No files found in the data/summary directory.")
+                return
+
+            # Check if files are empty
+            for file in files:
+                with open(os.path.join('data/summary', file), 'r') as f:
+                    content = f.read()
+                    if not content:
+                        print(f"The file {file} in data/summary is empty.")
+                    else:
+                        print(f"The file {file} in data/summary contains data.")
+        #  throw error if needed
+        except IOError as e:
+            print(f"Error testing summary files: {e}")
