@@ -117,10 +117,39 @@ import os
   ```
   ##### The statement checks if the paragraph HTML tag can be found in the article's HTML and prints out an error statement if it cannot be found
 
-
-
-
-
+  ### Checking if there are the proper files in data/raw after scraping the article
+  #### Calling the method in run.py
+  ```
+  file_scrape.test_raw_file_write()
+  ```
+  #### The method in the class Write_File() that is used to test if there are the expected raw files
+  ```
+  def test_raw_file_write(self):
+        """Test raw file writing."""
+        try:
+            # Check if the data/raw directory exists
+            if not os.path.exists('data/raw'):
+                print("The data/raw directory does not exist.")
+                return
+            # Get a list of files in the data/raw directory
+            files = os.listdir('data/raw')
+            # if no files return
+            if not files:
+                print("No files found in the data/raw directory.")
+                return
+            # Check if files have content
+            for file in files:
+                with open(os.path.join('data/raw', file), 'r') as f:
+                    content = f.read()
+                    if not content:
+                        print(f"The file {file} in data/raw is empty.")
+                    else:
+                        print(f"The file {file} in data/raw contains data.")
+        #  throw error if needed
+        except IOError as e:
+            print(f"Error testing raw file write: {e}")
+   ```
+  ##### The method checks three events that could occur. The first is checking if the directory path data/raw excits. The second checks if there are files in raw. Lastly, it checks if there is content in the files. An IOError is thrown if any of those fail which includes a print statement. 
 
 
 
