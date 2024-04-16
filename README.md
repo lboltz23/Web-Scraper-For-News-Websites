@@ -75,7 +75,25 @@ import os
     messages = ["role": "user", "content": "whatever question or prompt"],)
   return summary.choices[0].message.content
   ```
-  
+  ## Test issues
+  ### Checking the URLs provided in the urlsfile.txt
+  ### There are three possibilities:
+  * No URL given : there are no URLs in the text file
+  * Invalid URL: the URL cannot be located
+  * Incompatible URL: the URL is not able to be scraped because scraper cannot find proper tags in HTML code
+  #### Using a Try-Except statement to test for either an attribute error or an exception error
+  ```
+  try:
+      data = web_scrape.website_scrape(url)   #scraping the website using the Website_Scraper() instance and storing the data returned
+  except AttributeError as e:
+      print("could not retrieve data because of unknown url", e) #prints could not retrieve data because of unknown url and the error
+  except Exception as err:
+      if url == "":
+          print("no url", err) #prints no url and the error given
+      elif url !="":
+          print("invalid url", err) #prints invalid url and the error given
+  ```
+  ##### The statement will print out an error statement with the corresponding error output
   
 
   
