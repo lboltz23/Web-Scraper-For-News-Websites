@@ -156,7 +156,7 @@ import os
   ```
   file_scrape.test_processed_file_write()
   ```
-  #### The method in the class Write_File() that is used to test if there are the expected raw files
+  #### The method in the class Write_File() that is used to test if there are the expected processed files
   ```
   def test_processed_file_write(self):
         """Test processed file writing."""
@@ -184,6 +184,45 @@ import os
             print(f"Error testing processed file write: {e}")
    ```
   ##### The method checks three events that could occur. The first is checking if the directory path data/processed exists. The second checks if there are files in processed. Lastly, it checks if there is content in the files. An IOError is thrown if any of those fail which includes a print statement. 
+
+### Checking if there are the proper files in data/summary after scraping the article and getting an API response
+  #### Calling the method in run.py
+  ```
+  summary.test_summary_files() # tests summary files
+  ```
+  #### The method in the class Write_Summary() that is used to test if there are the expected summary files
+  ```
+  def test_summary_files(self):
+        """Test summary files."""
+        try:
+            # Check if the data/summary directory exists
+            if not os.path.exists('data/summary'):
+                print("The data/summary directory does not exist.")
+                return
+
+            # Get a list of files in the data/summary directory
+            files = os.listdir('data/summary')
+
+            if not files:
+                print("No files found in the data/summary directory.")
+                return
+
+            # Check if files are empty
+            for file in files:
+                with open(os.path.join('data/summary', file), 'r') as f:
+                    content = f.read()
+                    if not content:
+                        print(f"The file {file} in data/summary is empty.")
+                    else:
+                        print(f"The file {file} in data/summary contains data.")
+        #  throw error if needed
+        except IOError as e:
+            print(f"Error testing summary files: {e}")
+
+   ```
+  ##### The method checks three events that could occur. The first is checking if the directory path data/summary exists. The second checks if there are files in summary. Lastly, it checks if there is content in the files. An IOError is thrown if any of those fail which includes a print statement. 
+
+
 
 
 
