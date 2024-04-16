@@ -65,6 +65,6 @@ class Write_Summary(Summary):
                         print(f"The file {file} in data/summary is empty.")
                     else:
                         print(f"The file {file} in data/summary contains data.")
-
+        #  throw error if needed
         except IOError as e:
             print(f"Error testing summary files: {e}")
