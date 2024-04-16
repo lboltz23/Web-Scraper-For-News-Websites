@@ -222,7 +222,15 @@ import os
    ```
   ##### The method checks three events that could occur. The first is checking if the directory path data/summary exists. The second checks if there are files in summary. Lastly, it checks if there is content in the files. An IOError is thrown if any of those fail which includes a print statement. 
 
-
+### Checking if the web scraper was able to make an API call and get a summary response 
+#### Using a try-except statement in run.py to see if a summary was able to be created
+```
+try: #try to get summary
+    Summary = summary.get_summary(data['body'])
+except Exception as e: #if not able to get summary throw error
+    print("Error getting summary:", e)
+```
+##### The statement can throw an exception error that will output a print statement containing what happened and the exception
 
 
 
