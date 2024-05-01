@@ -1,6 +1,7 @@
 from module_1.web_scrape import Website_Scraper #importing module one and all the classes inside
 from module_2.file_scrape import Write_File #importing module two and all the classes inside
-from module3.chatgpt import Write_Summary 
+from module3.chatgpt import Write_Summary
+from webpage_creation.to_html import TextToHTMLConvert 
 from dotenv import load_dotenv
 import os
 from openai import OpenAI
@@ -16,7 +17,8 @@ def main():
     file_scrape = Write_File()  #creating an instance of the Write_File() class
     
     summary = Write_Summary(api_key)
-
+    converter = TextToHTMLConvert("webpage_creation/articles.txt", "webpage_creation/output.html")
+    converter.txt_to_html()
     #Iterating over the list of urls in urls
     for index, url in enumerate(urls):
         #Creates a try, except to check if there are no urls, an invalid url, or if the url is unknown, so it cannot be scraped 
@@ -41,6 +43,6 @@ def main():
             else: # if able to get summary write it to file, then test if it is in file
                 summary.write_files(index, data['title'], Summary)
                 summary.test_summary_files() # tests summary files
-            
+    
 if __name__ == "__main__":
     main()

@@ -41,7 +41,6 @@ class Write_Summary(Summary):
                 #if the line is not empty, write to the file
                 if line.strip():
                     f.write(line.strip() + '.' + '\n\n')   
-
     def test_summary_files(self):
         """Test summary files."""
         try:
